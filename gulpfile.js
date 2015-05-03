@@ -10,12 +10,12 @@ var shell = require('gulp-shell');
 var dotenv = require('dotenv');
 
 var assets = [
-  'assets/javascripts/application.coffee', 
+  'assets/javascripts/application.coffee',
   'assets/stylesheets/application.scss'
 ]
 
 // Development
-// ----------------------------------------------------------- 
+// -----------------------------------------------------------
 
 gulp.task("assets:compile", function() {
   gulp.src(assets)
@@ -31,7 +31,7 @@ gulp.task("assets:compile", function() {
 
 gulp.task("server", ["assets:compile"], function() {
   gulp.src('').pipe(shell('gin main.go'));
-  gulp.watch(['app/assets/**/*.coffee', 'app/assets/**/*.scss'], ["assets:compile"]);
+  gulp.watch(['assets/**/*.coffee', 'assets/**/*.scss'],{ interval: 500 }, ["assets:compile"]);
 });
 
 gulp.task("test", ["assets:compile"], function() {
@@ -39,7 +39,7 @@ gulp.task("test", ["assets:compile"], function() {
 });
 
 // Production
-// ----------------------------------------------------------- 
+// -----------------------------------------------------------
 
 gulp.task("assets:precompile", function() {
   gulp.src(assets)
